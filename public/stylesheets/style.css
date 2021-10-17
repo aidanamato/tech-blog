@@ -1,0 +1,38 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: 'Noto Sans Mono', monospace;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+ 
+/* header styles start */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left-header {
+  width: 50%;
+}
+
+h1 {
+  width: fit-content;
+  margin: auto;
+  font-size: 40px;
+  text-align: center;
+}
+
+nav {
+  display: flex;
+  width: 30%;
+  justify-content: space-evenly;
+}
