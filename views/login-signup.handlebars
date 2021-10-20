@@ -1,0 +1,23 @@
+<form class="login-signup" name="login-signup">
+  {{#if login}}
+  <h2>Login</h2>
+  <label for="username">Username</label>
+  <input name="username" type="text" for="login-signup" placeholder="username"></input>
+  <label for="password">Password</label>
+  <input name="password" type="text" for="login-signup" placeholder="password"></input>
+  <p class="prompt">Don't have an account? Sign up <a href="/signup">here</a>.</p>
+  {{/if}}
+  {{#if signup}}
+  <h2>Sign Up</h2>
+  <label for="username">Username</label>
+  <input name="username" type="text" for="login-signup" placeholder="username"></input>
+  <label for="password">Password</label>
+  <input name="password" type="text" for="login-signup" placeholder="password"></input>
+  <label for="password-confirm">Confirm Password</label>
+  <input name="password-confirm" type="text" for="login-signup" placeholder="password"></input>
+  <p class="prompt">Already have an account? Login <a href="/login">here</a>.</p>
+  {{/if}}
+</form>
+
+
+

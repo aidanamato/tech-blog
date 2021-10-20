@@ -5,12 +5,17 @@
 }
 
 body {
-  font-family: 'Noto Sans Mono', monospace;
+  background-color: rgba(118, 118, 118, 0.1);
+  font-family: 'Roboto', sans-serif;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+main {
+  margin-top: 20px;
 }
  
 /* header styles start */
@@ -18,6 +23,8 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: rgba(48, 109, 161, 0.75);
+  font-family: 'Noto Sans Mono', monospace;
 }
 
 .left-header {
@@ -31,8 +38,106 @@ h1 {
   text-align: center;
 }
 
+h1:hover {
+  opacity: 1;
+}
+
 nav {
   display: flex;
   width: 30%;
   justify-content: space-evenly;
+}
+
+nav a:hover {
+  opacity: 0.5;
+}
+/* header styles end */
+
+/* homepage styles start */
+.posts {
+  width: 70%;
+  margin: auto;
+}
+
+.post {
+  background-color: white;
+  padding: 10px 20px;
+  margin-top: 20px; 
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(198, 198, 198, 0.5);
+}
+
+.post-info {
+  font-size: 12px;
+  opacity: 0.5;
+}
+
+.post-info a {
+  color: rgb(22, 55, 175);
+}
+
+.post-info a:hover, .post-comments:hover {
+  opacity: 0.65;
+}
+
+.post-title {
+  margin-bottom: 10px;
+  font-size: 28px;
+}
+
+.post-content {
+  line-height: 1.25;
+}
+
+.post-comments {
+  margin-top: 6px;
+  font-size: 12px;
+  color: rgba(22, 55, 175, 0.5);
+}
+/* homepage styles end */
+
+/* login/signup styles start */
+.login-signup {
+  width: 25%;
+  margin: auto;
+  padding: 20px 20px 5px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(198, 198, 198, 0.5);
+}
+
+.login-signup label, .login-signup input {
+  display: block;
+  width: 100%;
+}
+
+.login-signup label {
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+.login-signup input {
+  font-size: 16px;
+  padding: 8px;
+  border-style: none;
+  border-radius: 12px;
+  background-color: rgba(118, 118, 118, 0.15);
+}
+
+.login-signup input:hover {
+  background-color: rgba(29, 163, 163, 0.15);
+}
+
+.prompt {
+  font-size: 12px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.prompt a {
+  color: rgba(22, 55, 175, 0.5);
+}
+
+.prompt a:hover {
+  opacity: 0.65;
 }
