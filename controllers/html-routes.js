@@ -1,8 +1,9 @@
 const router = require('express').Router();
-const sequelize = require('../config/connection');
 
 router.get('/', (req, res) => {
-  res.render('homepage');
+  res.render('homepage', {
+    loggedIn: req.session.loggedIn
+  });
 });
 
 router.get('/login', (req, res) => {
@@ -12,6 +13,5 @@ router.get('/login', (req, res) => {
 router.get('/signup', (req, res) => {
   res.render('login-signup', {signup: true});
 });
-
 
 module.exports = router;

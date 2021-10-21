@@ -19,15 +19,19 @@
       <a href="/"><h1>Tech Talk</h1></a>
     </div>
     <nav>
+      {{#if loggedIn}}
+      <a href="/dashboard">Dashboard</a>
+      <p id="logout">Logout</p>
+      <script src="/javascript/logout.js"></script>
+      {{else}}
       <a href="/login">Login</a>
-      {{!-- <a href="/dashboard">Dashboard</a>
-      <a href="/logout">Logout</a> --}}
+      <a href="/signup">Sign Up</a>
+      {{/if}}
     </nav>
   </header>
 
   <main>
     {{{ body }}}
   </main>
-  
 </body>
 </html>

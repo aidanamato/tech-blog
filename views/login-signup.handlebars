@@ -4,18 +4,23 @@
   <label for="username">Username</label>
   <input name="username" type="text" for="login-signup" placeholder="username"></input>
   <label for="password">Password</label>
-  <input name="password" type="text" for="login-signup" placeholder="password"></input>
+  <input name="password" type="password" for="login-signup" placeholder="password"></input>
+  <button for="login-signup">Login</button>
   <p class="prompt">Don't have an account? Sign up <a href="/signup">here</a>.</p>
+  <script src="/javascript/login.js"></script>
   {{/if}}
+
   {{#if signup}}
   <h2>Sign Up</h2>
   <label for="username">Username</label>
   <input name="username" type="text" for="login-signup" placeholder="username"></input>
   <label for="password">Password</label>
-  <input name="password" type="text" for="login-signup" placeholder="password"></input>
+  <input name="password" type="password" for="login-signup" placeholder="password"></input>
   <label for="password-confirm">Confirm Password</label>
-  <input name="password-confirm" type="text" for="login-signup" placeholder="password"></input>
+  <input name="password-confirm" type="password" for="login-signup" placeholder="confirm password"></input>
+  <button for="login-signup">Sign Up</button>
   <p class="prompt">Already have an account? Login <a href="/login">here</a>.</p>
+  <script src="/javascript/signup.js"></script>
   {{/if}}
 </form>
 
