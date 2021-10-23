@@ -1,0 +1,18 @@
+{{#if posts}}
+<a href="/dashboard/new"><button id="new-post">+ New Post</button></a>
+<div id="posts">
+  {{#each posts as |post|}}
+  {{> posts post}}
+  {{/each}}
+</div>
+{{/if}}
+
+{{#if newPost}}
+<form id="post-form">
+  <h2>New Post</h2>
+  <input class="form-title" placeholder="Title"></input>
+  <textarea class="form-content" placeholder="Text"></textarea>
+  <button type="submit">Post</button>
+</form>
+<script src="/javascript/new-post.js"></script>
+{{/if}}

@@ -14,7 +14,7 @@ async function signupHandler(event) {
     const errorMsg = document.createElement('p');
     errorMsg.className = 'error';
     errorMsg.textContent = "Passwords do not match";
-    document.querySelector('.login-signup h2').insertAdjacentElement('afterend', errorMsg);
+    document.querySelector('#login-signup h2').insertAdjacentElement('afterend', errorMsg);
     return;
   }
 
@@ -44,17 +44,17 @@ async function signupHandler(event) {
         const errorMsg = document.createElement('p');
         errorMsg.className = 'error';
         errorMsg.textContent = 'Username already taken.';
-        document.querySelector('.login-signup h2').insertAdjacentElement('afterend', errorMsg);
+        document.querySelector('#login-signup h2').insertAdjacentElement('afterend', errorMsg);
 
         // if password not long enough
       } else if (data.errors[0].validatorKey === "len") {
         const errorMsg = document.createElement('p');
         errorMsg.className = 'error';
         errorMsg.textContent = 'Password must be at least 8 characters.';
-        document.querySelector('.login-signup h2').insertAdjacentElement('afterend', errorMsg);
+        document.querySelector('#login-signup h2').insertAdjacentElement('afterend', errorMsg);
       }
     }
   }
 }
 
-document.querySelector('.login-signup').addEventListener('submit', signupHandler);
+document.querySelector('#login-signup').addEventListener('submit', signupHandler);

@@ -25,13 +25,14 @@ async function loginHandler(event) {
       console.log('success');
       // timeout to allow the session cookies to save before home page is reloaded
       setTimeout(() => {location.replace('/');}, 500);
+
     } else {
       const data = await response.json();
       // display error to user
       const errorMsg = document.createElement('p');
       errorMsg.className = 'error';
       errorMsg.textContent = data.message;
-      document.querySelector('.login-signup h2').insertAdjacentElement('afterend', errorMsg);
+      document.querySelector('#login-signup h2').insertAdjacentElement('afterend', errorMsg);
     }
 
     // display error message to fill in missing field
@@ -39,13 +40,14 @@ async function loginHandler(event) {
     const errorMsg = document.createElement('p');
     errorMsg.className = 'error';
     errorMsg.textContent = "Username required";
-    document.querySelector('.login-signup h2').insertAdjacentElement('afterend', errorMsg);
+    document.querySelector('#login-signup h2').insertAdjacentElement('afterend', errorMsg);
+    
   } else {
     const errorMsg = document.createElement('p');
     errorMsg.className = 'error';
     errorMsg.textContent = "Password required";
-    document.querySelector('.login-signup h2').insertAdjacentElement('afterend', errorMsg);
+    document.querySelector('#login-signup h2').insertAdjacentElement('afterend', errorMsg);
   }
 }
 
-document.querySelector('.login-signup').addEventListener('submit', loginHandler);
+document.querySelector('#login-signup').addEventListener('submit', loginHandler);

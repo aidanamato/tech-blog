@@ -5,10 +5,11 @@ const path = require('path');
 const exphbs = require('express-handlebars');
 const session = require('express-session');
 require('dotenv').config();
+const helpers = require('./utils/helpers');
 const createDb = require('./utils/createDb');
 
 const app = express();
-const hbs = exphbs.create();
+const hbs = exphbs.create({helpers});
 const PORT = process.env.PORT || 3001;
 
 // creates the database on launch if not exists
@@ -34,6 +35,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
 
-sequelize.sync({force: true}).then(() => {
+sequelize.sync({force: false}).then(() => {
   app.listen(PORT, console.log(`Now listening on port ${PORT}`))
 });
