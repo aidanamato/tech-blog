@@ -1,7 +1,8 @@
 const router = require('express').Router();
-const {Post, User} = require('../../models');
+const {Post, User, Comment} = require('../../models');
 const withAuth = require('../../utils/auth');
 
+// get all posts of logged in user
 router.get('/dashboard', withAuth, (req, res) => {
   Post.findAll({
     where: {
@@ -12,6 +13,14 @@ router.get('/dashboard', withAuth, (req, res) => {
       {
         model: User,
         attributes: ['username', 'id']
+      },
+      {
+        model: Comment,
+        attributes: ['content'],
+        include: {
+          model: User,
+          attributes: ['username']
+        }
       }
     ]
   })
