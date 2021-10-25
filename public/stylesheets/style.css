@@ -66,7 +66,7 @@ nav a:hover, #logout:hover {
 .post {
   background-color: white;
   padding: 10px 20px;
-  margin-top: 20px; 
+  margin-bottom: 20px; 
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(198, 198, 198, 0.5);
 }
@@ -177,7 +177,7 @@ nav a:hover, #logout:hover {
   font-size: 20px;
   font-weight: bold;
   padding: 8px 16px;
-  margin: auto;
+  margin: 0 auto 20px;
   border-style: none;
   border-radius: 12px;
   color: white;
@@ -201,14 +201,13 @@ nav a:hover, #logout:hover {
 
 #post-form h2 {
   font-size: 24px;
-  margin-bottom: 12px;
 }
 
 .form-title {
   width: 100%;
   padding: 8px;
   border: 1px solid grey;
-  margin-bottom: 10px;
+  margin: 10px 0;
   font-size: 20px;
 }
 
@@ -240,3 +239,8 @@ nav a:hover, #logout:hover {
   background-color: rgba(48, 109, 161, 0.75);
 }
 /* dashboard styles end */
+
+/* profile styles start */
+.profile-name {
+  margin-bottom: 15px;
+}
