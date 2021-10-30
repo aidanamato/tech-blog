@@ -36,32 +36,43 @@ router.get('/', (req, res) => {
 
 // user page
 router.get('/user/:id', (req, res) => {
-  Post.findAll({
+  User.findOne({
     where: {
-      user_id: req.params.id
+      id: req.params.id
     },
-    order: [['created_at', 'DESC']],
     include: [
       {
-        model: User,
-        attributes: ['username', 'id']
-      },
-      {
-        model: Comment,
-        attributes: ['content'],
-        include: {
-          model: User,
-          attributes: ['username', 'id']
-        }
+        model: Post,
+        order: [['created_at', 'DESC']],
+        include: [
+          {
+            model: User,
+            attributes: ['username', 'id']
+          },
+          {
+            model: Comment,
+            attributes: ['content'],
+            include: {
+              model: User,
+              attributes: ['username', 'id']
+            }
+          }
+        ]
       }
     ]
   })
     .then(dbPostData => {
-      const posts = dbPostData.map(post => post.get({plain: true}));
+      const posts = dbPostData.posts.map(post => post.get({plain: true}));
+      console.log(posts);
+      
+      if (dbPostData.id === req.session.user_id) {
+        res.redirect('/dashboard');
+        return;
+      }
       
       res.render('profile', {
         posts,
-        username: req.session.username,
+        username: dbPostData.username,
         loggedIn: req.session.loggedIn
       });
     })

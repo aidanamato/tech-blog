@@ -5,8 +5,12 @@ const seedPosts = require('./post-seeds');
 const seedComments = require('./comment-seeds');
 
 async function seedAll() {
-  sequelize.sync({ force: false })
-    .then(() => seedComments());
+  await sequelize.sync({ force: true });
+  await seedUsers();
+  await seedPosts();
+  await seedComments();
+
+  process.exit(0);
 };
 
 seedAll();

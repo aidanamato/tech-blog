@@ -38,8 +38,9 @@ const commentSeeds = [
   }
 ]
 
-function seedComments() {
-  Comment.bulkCreate(commentSeeds);
+async function seedComments() {
+  const response = await Comment.bulkCreate(commentSeeds);
+  return response;
 }
 
 module.exports = seedComments;

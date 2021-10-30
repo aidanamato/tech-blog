@@ -28,8 +28,9 @@ const postSeeds = [
   }
 ]
 
-function seedPosts() {
-  Post.bulkCreate(postSeeds);
+async function seedPosts() {
+  const response = await Post.bulkCreate(postSeeds);
+  return response;
 }
 
 module.exports = seedPosts;

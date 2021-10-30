@@ -82,7 +82,7 @@ async function displayComment(commentsEl, postId) {
         commentEl.className = 'comment';
         
         commentEl.innerHTML = `
-<p class="comment-info"><a>${comment.user.username}</a> on ${comment.created_at}</p>
+<p class="comment-info"><a href="/user/${comment.user_id}">${comment.user.username}</a> on ${comment.created_at}</p>
 <p class="comment-content">${comment.content}</p>`;
 
         commentsEl.appendChild(commentEl);

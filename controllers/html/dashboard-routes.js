@@ -29,6 +29,7 @@ router.get('/dashboard', withAuth, (req, res) => {
       
       res.render('dashboard', {
         posts,
+        username: req.session.username,
         loggedIn: req.session.loggedIn
       });
     })
