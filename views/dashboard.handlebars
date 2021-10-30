@@ -1,14 +1,3 @@
-{{#if posts}}
-<h2 class="profile-name">{{username}}</h2>
-<a href="/dashboard/new"><button id="new-post">+ New Post</button></a>
-<div id="posts">
-  {{#each posts as |post|}}
-  {{> posts post}}
-  {{/each}}
-</div>
-<script src="/javascript/comments.js"></script>
-{{/if}}
-
 {{#if newPost}}
 <form id="post-form">
   <h2>New Post</h2>
@@ -17,4 +6,13 @@
   <button type="submit">Post</button>
 </form>
 <script src="/javascript/new-post.js"></script>
+{{else}}
+<h2 class="profile-name">{{username}}</h2>
+<a href="/dashboard/new"><button id="new-post">+ New Post</button></a>
+<div id="posts">
+  {{#each posts as |post|}}
+  {{> posts post}}
+  {{/each}}
+</div>
+<script src="/javascript/comments.js"></script>
 {{/if}}

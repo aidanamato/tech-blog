@@ -26,7 +26,7 @@ router.get('/dashboard', withAuth, (req, res) => {
   })
     .then(dbPostData => {
       const posts = dbPostData.map(post => post.get({plain: true}));
-      
+
       res.render('dashboard', {
         posts,
         username: req.session.username,
@@ -40,6 +40,7 @@ router.get('/dashboard', withAuth, (req, res) => {
 });
 
 router.get('/dashboard/new', withAuth, (req, res) => {
+  
   res.render('dashboard', {
     newPost: true,
     loggedIn: req.session.loggedIn
