@@ -2,5 +2,5 @@
   <p class="post-info">Posted by <a href="/user/{{user.id}}">{{user.username}}</a> on {{format_date createdAt}}</p>
   <h2 class="post-title">{{title}}</h2>
   <p class="post-content">{{content}}</p>
-  <p class="show-comments">{{comments.length}} comments</p>
+  <p class="show-comments">{{comments.length}} {{format_plural "comment" comments.length}}</p>
 </div>
