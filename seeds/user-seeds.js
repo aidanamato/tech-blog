@@ -14,11 +14,11 @@ const userSeeds = [
     password: '3{*sBp7uLh3E'
   },
   {
-    username: 'elonmuskreal',
+    username: 'realslimshady',
     password: 'Lzu?BJv=an6S'
   },
   {
-    username: 'httpwarrior',
+    username: 'webwarrior',
     password: '?SH%8#f*e?fA'
   }
 ]
@@ -28,3 +28,4 @@ function seedUsers() {
 }
 
 module.exports = seedUsers;
+
