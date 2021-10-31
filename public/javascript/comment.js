@@ -60,6 +60,12 @@ async function commentsHandler(event) {
 
     // add event listener to hideCommentsEl
     hideCommentsEl.addEventListener('click', () => {
+      commentCount = document.querySelectorAll(`#${postEl.id} .comment`).length;
+      viewCommentsEl.textContent = `${commentCount} comments`;
+      if (commentCount === 1) {
+        viewCommentsEl.textContent = '1 comment';
+      }
+      
       hideCommentsEl.replaceWith(viewCommentsEl);
       commentsContainerEl.remove();
     });
@@ -75,19 +81,48 @@ async function displayComment(commentsEl, postId) {
       const responseData = await getResponse.json();
       const commentsArr = responseData.comments;
 
-      console.log(commentsArr);
-
       commentsArr.map(comment => {
         const commentEl = document.createElement('div');
-        commentEl.className = 'comment';
+        commentEl.className = `comment comment-${comment.id}`;
         
-        commentEl.innerHTML = `
-<p class="comment-info"><a href="/user/${comment.user_id}">${comment.user.username}</a> on ${comment.created_at}</p>
+        // if comment belongs to user include delete icon
+        if (comment.is_user_comment) {
+          commentEl.innerHTML = `
+<div class="comment-header">
+  <p class="comment-info"><a href="/user/${comment.user_id}">${comment.user.username}</a> on ${comment.created_at}</p>
+  <i class="comment-delete fas fa-times"></i>
+</div>
 <p class="comment-content">${comment.content}</p>`;
+        } else {
+
+          commentEl.innerHTML = `
+<p class="comment-info"><a href="/user/${comment.user_id}">${comment.user.username}</a> on ${comment.created_at}</p>
+<p class="comment-content">${comment.content}</p>`
+        }
 
         commentsEl.appendChild(commentEl);
+
+        commentEl.addEventListener('click', deleteCommentsHandler);
       });
     }
+}
+
+// function to allow user to delete comments
+async function deleteCommentsHandler(event) {
+  if (event.target.className === 'comment-delete fas fa-times') {
+    const commentEl = event.target.parentNode.parentNode;
+    const commentId = commentEl.className.split('-')[1];
+
+    const response = await fetch(`/api/comments/${commentId}`, {method: 'DELETE'});
+
+    if (response.ok) {
+      console.log(`Comment ${commentId} deleted`);
+      commentEl.remove();
+    } else {
+      const data = await response.json();
+      console.log(data);
+    }
+  }
 }
 
 document.querySelector('#posts').addEventListener('click', commentsHandler);

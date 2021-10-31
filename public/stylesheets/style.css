@@ -78,6 +78,7 @@ nav a:hover, #logout:hover {
 }
 
 .post-info, .comment-info {
+  display: inline;
   font-size: 12px;
   opacity: 0.5;
 }
@@ -94,6 +95,13 @@ nav a:hover, #logout:hover {
 .post-title {
   margin-bottom: 10px;
   font-size: 24px;
+}
+
+.post-delete {
+  position: relative;
+  z-index: 10;
+  float: right;
+  cursor: pointer;
 }
 
 .post-content {
@@ -129,9 +137,16 @@ nav a:hover, #logout:hover {
 .comment {
   width: fit-content;
   margin: 5px 0;
-  padding: 8px;
+  padding: 6px 8px 8px;
   border-radius: 12px;
   background-color: rgba(118, 118, 118, 0.15);
+}
+
+.comment-delete {
+  display: inline;
+  padding-left: 10px;
+  font-size: 14px;
+  cursor: pointer;
 }
 /* post styles end */
 

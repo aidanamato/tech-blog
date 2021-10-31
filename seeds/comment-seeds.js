@@ -7,7 +7,7 @@ const commentSeeds = [
     post_id: 1
   },
   {
-    content: "Try using Browserify! Browserify allows you to create a front end JS file that has access to your node modules. https://browserify.org/",
+    content: "Try using Browserify! Browserify allows you to create a front end JS file that has access to your node modules.",
     user_id: 2,
     post_id: 2
   },

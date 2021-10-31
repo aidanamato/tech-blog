@@ -21,7 +21,17 @@ router.get('/', (req, res) => {
     ]
   })
     .then(dbPostData => {
-      const posts = dbPostData.map(post => post.get({plain: true}));
+      const posts = dbPostData.map(post => {
+        post = post.get({plain: true});
+        
+        let isUserPost;
+        post.user_id === req.session.user_id ? isUserPost = true : isUserPost = false;
+        post.is_user_post = isUserPost;
+
+        return post;
+      });
+
+      console.log(posts);
       
       res.render('homepage', {
         posts,
@@ -62,8 +72,15 @@ router.get('/user/:id', (req, res) => {
     ]
   })
     .then(dbPostData => {
-      const posts = dbPostData.posts.map(post => post.get({plain: true}));
-      console.log(posts);
+      const posts = dbPostData.map(post => {
+        post = post.get({plain: true});
+        
+        let isUserPost;
+        post.user_id === req.session.user_id ? isUserPost = true : isUserPost = false;
+        post.is_user_post = isUserPost;
+
+        return post;
+      });
       
       if (dbPostData.id === req.session.user_id) {
         res.redirect('/dashboard');

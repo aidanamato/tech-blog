@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const {Post, User, Comment} = require('../../models');
+const withAuth = require('../../utils/auth');
+const {format_date} = require('../../utils/helpers');
 
 // get all comments
 router.get('/', (req, res) => {
@@ -44,7 +46,7 @@ router.get('/:postId', (req, res) => {
     where: {
       post_id: req.params.postId
     },
-    attributes: ['content', 'user_id', 'created_at'],
+    attributes: ['id', 'content', 'user_id', 'created_at'],
     include: [
       {
         model: User,
@@ -58,7 +60,17 @@ router.get('/:postId', (req, res) => {
         return;
       }
       
-      const comments = dbCommentData.map(comment => comment.get({plain: true}));
+      const comments = dbCommentData.map(comment => {
+        comment = comment.get({plain: true});
+        comment.created_at = format_date(comment.created_at);
+
+        let isUserComment;
+        comment.user_id === req.session.user_id ? isUserComment = true : isUserComment = false;
+        comment.is_user_comment = isUserComment;
+
+        return comment;
+      });
+
       res.json({comments});
     })
     .catch(err => {
@@ -67,7 +79,7 @@ router.get('/:postId', (req, res) => {
     })
 });
 
-router.post('/', (req, res) => {
+router.post('/', withAuth, (req, res) => {
   Comment.create(
     {
     content: req.body.content,
@@ -79,6 +91,25 @@ router.post('/', (req, res) => {
     .catch(err => {
       console.log(err);
       res.status(400).json(err);
+    });
+});
+
+router.delete('/:id', withAuth, (req, res) => {
+  Comment.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(dbCommentData => {
+      if (!dbCommentData) {
+        res.status(404).json({message: 'No comment found with this id'});
+        return;
+      }
+      res.json(dbCommentData);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
     });
 });
 

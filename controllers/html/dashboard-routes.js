@@ -25,7 +25,15 @@ router.get('/dashboard', withAuth, (req, res) => {
     ]
   })
     .then(dbPostData => {
-      const posts = dbPostData.map(post => post.get({plain: true}));
+      const posts = dbPostData.map(post => {
+        post = post.get({plain: true});
+        
+        let isUserPost;
+        post.user_id === req.session.user_id ? isUserPost = true : isUserPost = false;
+        post.is_user_post = isUserPost;
+
+        return post;
+      });
 
       res.render('dashboard', {
         posts,
