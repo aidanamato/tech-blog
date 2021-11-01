@@ -38,6 +38,7 @@ NPM Dependencies
 Font Awesome Icons
 
 * [times](https://fontawesome.com/v5.15/icons/times?style=solid)
+* [edit](https://fontawesome.com/v5.15/icons/edit?style=solid)
 
 ## Authors
 
