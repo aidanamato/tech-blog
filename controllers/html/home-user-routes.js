@@ -71,8 +71,10 @@ router.get('/user/:id', (req, res) => {
       }
     ]
   })
-    .then(dbPostData => {
-      const posts = dbPostData.map(post => {
+    .then(dbUserData => {
+      console.log(dbUserData.posts);
+      
+      const posts = dbUserData.posts.map(post => {
         post = post.get({plain: true});
         
         let isUserPost;
@@ -82,14 +84,14 @@ router.get('/user/:id', (req, res) => {
         return post;
       });
       
-      if (dbPostData.id === req.session.user_id) {
+      if (dbUserData.id === req.session.user_id) {
         res.redirect('/dashboard');
         return;
       }
       
       res.render('profile', {
         posts,
-        username: dbPostData.username,
+        username: dbUserData.username,
         loggedIn: req.session.loggedIn
       });
     })
