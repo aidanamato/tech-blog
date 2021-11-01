@@ -83,14 +83,16 @@ async function displayComment(commentsEl, postId) {
 
       commentsArr.map(comment => {
         const commentEl = document.createElement('div');
-        commentEl.className = `comment comment-${comment.id}`;
+        commentEl.id = `comment-${comment.id}`
+        commentEl.className = 'comment';
         
         // if comment belongs to user include delete icon
         if (comment.is_user_comment) {
           commentEl.innerHTML = `
 <div class="comment-header">
   <p class="comment-info"><a href="/user/${comment.user_id}">${comment.user.username}</a> on ${comment.created_at}</p>
-  <i class="comment-delete fas fa-times"></i>
+  <i class="comment-edit-icon fas fa-edit"></i>
+  <i class="comment-delete-icon fas fa-times"></i>
 </div>
 <p class="comment-content">${comment.content}</p>`;
         } else {
@@ -102,16 +104,17 @@ async function displayComment(commentsEl, postId) {
 
         commentsEl.appendChild(commentEl);
 
-        commentEl.addEventListener('click', deleteCommentsHandler);
+        commentEl.addEventListener('click', commentRequestHandler);
       });
     }
 }
 
-// function to allow user to delete comments
-async function deleteCommentsHandler(event) {
-  if (event.target.className === 'comment-delete fas fa-times') {
+// function to allow user to delete or update comments
+async function commentRequestHandler(event) {
+  // delete comment
+  if (event.target.className === 'comment-delete-icon fas fa-times') {
     const commentEl = event.target.parentNode.parentNode;
-    const commentId = commentEl.className.split('-')[1];
+    const commentId = commentEl.id.split('-')[1];
 
     const response = await fetch(`/api/comments/${commentId}`, {method: 'DELETE'});
 
@@ -121,6 +124,51 @@ async function deleteCommentsHandler(event) {
     } else {
       const data = await response.json();
       console.log(data);
+    }
+
+  // edit comment
+  } else if (event.target.className === 'comment-edit-icon fas fa-edit') {
+    const commentEl = event.target.parentNode.parentNode;
+    const commentId = commentEl.id.split('-')[1];
+
+    // if no textarea, create one to allow user to edit comment
+    if (document.querySelector(`#${commentEl.id} .comment-content`)) {
+      commentEl.classList.add('comment-edit');
+      const commentContentEl = document.querySelector(`#${commentEl.id} .comment-content`);
+
+      // create textarea to edit comment
+      const commentEditContentEl = document.createElement('textarea');
+      commentEditContentEl.className = 'comment-edit-content';
+      commentEditContentEl.setAttribute('rows', 3);
+      commentEditContentEl.value = commentContentEl.textContent;
+      commentContentEl.replaceWith(commentEditContentEl);
+    
+    // if there is a textarea update the comment in the database
+    } else if (document.querySelector(`#${commentEl.id} .comment-edit-content`)) {
+      const commentEditContentEl = document.querySelector(`#${commentEl.id} .comment-edit-content`);
+
+      // update comment in database
+      const response = await fetch(`/api/comments/${commentId}`, {
+        method: 'PUT',
+        body: JSON.stringify({
+          content: commentEditContentEl.value.trim()
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        console.log('Success');
+
+        const commentContentEl = document.createElement('p');
+        commentContentEl.className = 'comment-content';
+        commentContentEl.textContent = commentEditContentEl.value.trim();
+        commentEditContentEl.replaceWith(commentContentEl);
+      } else {
+        const data = await response.json();
+        console.log(data);
+      }
     }
   }
 }

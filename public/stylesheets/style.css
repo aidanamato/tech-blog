@@ -97,15 +97,30 @@ nav a:hover, #logout:hover {
   font-size: 24px;
 }
 
-.post-delete {
+.post-update-delete {
   position: relative;
   z-index: 10;
   float: right;
   cursor: pointer;
 }
 
+.post-delete-icon {
+  margin-left: 2px;
+}
+
 .post-content {
   line-height: 1.25;
+}
+
+.post-edit-title, .post-edit-content {
+  width: 100%;
+  resize: none;
+  padding: 4px;
+}
+
+.post-edit-title {
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .show-comments, .hide-comments {
@@ -142,11 +157,19 @@ nav a:hover, #logout:hover {
   background-color: rgba(118, 118, 118, 0.15);
 }
 
-.comment-delete {
-  display: inline;
-  padding-left: 10px;
+.comment-edit-icon, .comment-delete-icon {
   font-size: 14px;
   cursor: pointer;
+}
+
+.comment-edit {
+  width: 100%;
+}
+
+.comment-edit-content {
+  width: 100%;
+  background-color: inherit;
+  padding: 4px;
 }
 /* post styles end */
 

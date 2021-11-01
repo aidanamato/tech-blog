@@ -1,6 +1,9 @@
 <div id="post-{{id}}" class="post">
   {{#if is_user_post}}
-  <i class="post-delete fas fa-times"></i>
+  <div class="post-update-delete">
+    <i class="post-edit-icon fas fa-edit"></i>
+    <i class="post-delete-icon fas fa-times"></i>
+  </div>
   {{/if}}
   <p class="post-info">Posted by <a href="/user/{{user.id}}">{{user.username}}</a> on {{format_date createdAt}}</p>
   <h2 class="post-title">{{title}}</h2>

@@ -113,4 +113,23 @@ router.delete('/:id', withAuth, (req, res) => {
     });
 });
 
+router.put('/:id', withAuth, (req, res) => {
+  Comment.update(req.body, {
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(dbCommentData => {
+      if (!dbCommentData) {
+        res.status(404).json({message: 'No comment found with this id'});
+        return;
+      }
+      res.json(dbCommentData);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(400).json(err);
+    });
+});
+
 module.exports = router;
