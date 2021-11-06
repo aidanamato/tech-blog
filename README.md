@@ -9,6 +9,7 @@ Welcome to Tech Talk, your destination for communicating about today's technolog
 ## Table of Contents
 
 * [Usage](#usage)
+* [Deployment](#deployment)
 * [License](#license)
 * [Credits](#credits)
 * [Authors](#authors)
@@ -17,6 +18,10 @@ Welcome to Tech Talk, your destination for communicating about today's technolog
 ## Usage
 
 When you first arrive at the homepage, you'll see a wall of current blog posts as well as links to login and to sign up as a new user. After signing up with a username and password, you'll be able to comment on other's posts and write your own. To write your own post, navigate to the Dashboard, click the "New Post" button, and fill out the post form. You can comment on other posts by clicking the comments link on the post, typing a comment in the "Add a comment..." box and pressing enter. Enjoy Tech Talk!
+
+## Deployment
+
+The deployed application can be found at [nameless-hollows-07003.herokuapp.com](https://nameless-hollows-07003.herokuapp.com/).
 
 ## License
 
