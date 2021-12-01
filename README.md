@@ -2,6 +2,8 @@
 
 ![MIT License](https://img.shields.io/badge/license-MIT-green)
 
+![Screenshot of application.](./assets/screenshots/screenshot.png)
+
 ## Description
 
 Welcome to Tech Talk, your destination for communicating about today's technology. Tech gives you all the tools you need to discover, connect, and share in the technology community. Create an account, write your first post, and browse what others are talking about.
@@ -21,7 +23,7 @@ When you first arrive at the homepage, you'll see a wall of current blog posts a
 
 ## Deployment
 
-The deployed application can be found at [nameless-hollows-07003.herokuapp.com](https://nameless-hollows-07003.herokuapp.com/).
+The deployed application can be found [here](https://nameless-hollows-07003.herokuapp.com/).
 
 ## License
 

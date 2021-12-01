@@ -3,7 +3,6 @@ async function postRequestHandler(event) {
   if (event.target.className === 'post-delete-icon fas fa-times') {
     const postEl = event.target.parentNode.parentNode;
     const postId = postEl.id.split('post-')[1];
-    console.log(postId);
 
     const response = await fetch(`/api/posts/${postId}`, {method: 'DELETE'});
 
